@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UsuarioService } from '../service/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../models/usuario';
-import { HomeComponent } from '../home/home.component';
-import { JsonPipe } from '@angular/common';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -12,14 +11,39 @@ import { JsonPipe } from '@angular/common';
 })
 export class LoginComponent {
 
-  usuario: Usuario = new Usuario();
+  errorMessage: string = "";
+
+  @ViewChild('loginForm') loginForm!: NgForm;
 
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
-  loginUsuario() {
-    this.usuarioService.loginUsuario(this.usuario).subscribe(data =>{
-      console.log(data);
-    })
+  loginUsuario(celular: string, contraseña: string): void {
+
+    let email: string = "";
+
+    this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response) =>{
+      
+      this.usuarioService.setUsuario({celular, contraseña, email} as Usuario);
+
+      this.router.navigateByUrl("/home");
+      
+    }, (error) => {
+      
+      console.log('Error en el servicio: ', error);
+      this.errorMessage = "Celular y/o contraseña incorrectos.";
+
+    });
   }
+
+  closeAlert() {
+    this.errorMessage = "";
+  }
+
+  reset() {
+    this.loginForm.reset({
+        "celular": "",
+        "contraseña": ""
+    })
+}
 
 }
