@@ -4,7 +4,7 @@
         <div class="text-center">
            <span class="text-center">"app de estacionamiento"</span>
         </div>
-        <form #loginForm="ngForm" (ngSubmit)="loginUsuario(usuarioCelular.value, usuarioClave.value); reset()">
+        <form #loginForm="ngForm" (ngSubmit)="loginUsuario(usuarioCelular.value, usuarioClave.value)">
             <div class="mt-4">
                 <label for="celular" class="form-label">Celular</label>
                 <input type="text" class="form-control bg-light" id="celular" placeholder="Ingrese un celular" ngModel name="celular" #usuarioCelular>
@@ -14,14 +14,15 @@
                 <input type="password" class="form-control bg-light" id="contraseña" placeholder="Ingrese una contraseña" ngModel name="contraseña" #usuarioClave>
             </div>
             <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
-            <div class="pt-3">
+                <div class="pt-3">
                 <div class="border-bottom text-center" style="height: 0.9rem"></div>
             </div>
-            <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">Ingresar</button>
+                <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">Ingresar</button>
         </form>
         <div class="d-flex gap-1 justify-content-center mt-1">
-            <p>No estas registrado?</p>
+                <p>No estas registrado?</p>
             <a href="#" class="text-decoration-none text-info fw-semibold">Registrarse</a>
         </div>
     </div>
 </div>
+

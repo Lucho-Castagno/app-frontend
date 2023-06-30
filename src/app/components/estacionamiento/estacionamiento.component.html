@@ -1,0 +1,6 @@
+<form #patenteForm="ngForm" (ngSubmit)="addPatente(patenteCadena.value)">
+    <input type="text" class="form-control bg-light" id="cadena" placeholder="Ingrese numero de patente. Ej. AAA000 / AA000AA" ngModel name="cadena" #patenteCadena>
+    <button class="btn btn-success">registrar patente</button>
+</form>
+<ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
+<button class="btn btn-danger" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">{{patente.cadena}}</button>

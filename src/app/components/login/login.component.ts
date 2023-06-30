@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UsuarioService } from '../service/usuario.service';
+import { UsuarioService } from '../../service/usuario.service';
 import { Router } from '@angular/router';
-import { Usuario } from '../models/usuario';
+import { Usuario } from '../../models/usuario';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -22,13 +22,13 @@ export class LoginComponent {
     let email: string = "";
 
     this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response) =>{
-      
-      this.usuarioService.setUsuario({celular, contraseña, email} as Usuario);
 
-      this.router.navigateByUrl("/home");
+      this.usuarioService.setUsuario( new Usuario(response.celular, response.contraseña, response.email ));
+
+      this.router.navigate(['/home']);
       
     }, (error) => {
-      
+      this.reset();
       console.log('Error en el servicio: ', error);
       this.errorMessage = "Celular y/o contraseña incorrectos.";
 
@@ -43,7 +43,7 @@ export class LoginComponent {
     this.loginForm.reset({
         "celular": "",
         "contraseña": ""
-    })
-}
+    });
+  }
 
 }

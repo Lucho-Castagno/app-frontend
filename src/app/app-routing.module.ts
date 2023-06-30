@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
+import { CuentaComponent } from './components/cuenta/cuenta.component';
+import { HistorialComponent } from './components/historial/historial.component';
 
 const routes: Routes = [
-  {path : "", component: LoginComponent},
-  {path : "home", component: HomeComponent}
+  { path : "", component: LoginComponent },
+  { path : "home", component: HomeComponent,
+    children: [
+      { path: "estacionamiento", component: EstacionamientoComponent },
+      { path: "cuenta", component: CuentaComponent },
+      { path: "historial", component: HistorialComponent },
+      { path: "", redirectTo: "estacionamiento", pathMatch: 'full' }
+    ]
+  }
 ];
 
 @NgModule({

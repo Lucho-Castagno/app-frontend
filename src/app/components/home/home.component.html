@@ -1,0 +1,25 @@
+<div class="container d-flex vw-100">
+    <div class="bg-white p-5 rounded-5 text-secondary shadow w-50">
+        <h1 class="text-center fw-bold">¿Bienvenido!</h1>
+        <div class="text-center">
+           <span class="text-center">"app de estacionamiento"</span>
+        </div>
+        <div class="container">
+            <div class="row mt-4 justify-items-center gx-7">
+                <div class="col">
+                    <a [routerLink]="['estacionamiento']" class="btn btn-outline-info">reserva</a>
+                </div>
+                <div class="col">
+                    <a [routerLink]="['cuenta']" class="btn btn-outline-info">cuenta</a>
+                </div>
+                <div class="col">
+                    <a [routerLink]="['historial']" class="btn btn-outline-info">historial</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="bg-white p-5 mt-4 rounded-5 text-secondary shadow w-50">
+        <router-outlet></router-outlet>
+    </div>
+</div>

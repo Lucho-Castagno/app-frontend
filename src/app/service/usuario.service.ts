@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
-import { Observable, catchError, throwError, throwIfEmpty } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
+import { Patente } from '../models/patente';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UsuarioService {
   };
 
   private loginRoute: string = 'http://localhost:8080/login';
-  private usuarioRoute: string = 'http://localhost:8080/usuario';
+  private usuarioRoute: string = 'http://localhost:8080/usuarios';
 
   constructor(private http: HttpClient) { }
 
@@ -33,6 +34,20 @@ export class UsuarioService {
   }
 
   getUsuario(): Usuario {
+    return this.sesion;
+  }
+
+  getPatentes(): Observable<Patente[]> {
+    const url = `${this.usuarioRoute}/${this.sesion.celular}/patentes`;
+    return this.http.get<Patente[]>(url).pipe(
+      catchError(error => {
+        console.log("error al recibir patentes");
+        return throwError(error);
+      })
+    );
+  }
+
+  getSesion(): Usuario {
     return this.sesion;
   }
 
