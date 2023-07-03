@@ -3,6 +3,7 @@ import { UsuarioService } from '../../service/usuario.service';
 import { Router } from '@angular/router';
 import { Usuario } from '../../models/usuario';
 import { NgForm } from '@angular/forms';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -18,20 +19,15 @@ export class LoginComponent {
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   loginUsuario(celular: string, contraseña: string): void {
-
     let email: string = "";
-
-    this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response) =>{
-
-      this.usuarioService.setUsuario( new Usuario(response.celular, response.contraseña, response.email ));
-
-      this.router.navigate(['/home']);
-      
-    }, (error) => {
+    this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) =>{
+      if (response.status === 200) {
+        this.usuarioService.setUsuario( response.body );
+        this.router.navigate(['/home']);
+      }
+    }, (error: HttpErrorResponse) => {
       this.reset();
-      console.log('Error en el servicio: ', error);
-      this.errorMessage = "Celular y/o contraseña incorrectos.";
-
+      this.errorMessage = error.error;
     });
   }
 

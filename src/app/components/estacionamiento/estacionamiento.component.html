@@ -1,6 +1,17 @@
 <form #patenteForm="ngForm" (ngSubmit)="addPatente(patenteCadena.value)">
-    <input type="text" class="form-control bg-light" id="cadena" placeholder="Ingrese numero de patente. Ej. AAA000 / AA000AA" ngModel name="cadena" #patenteCadena>
-    <button class="btn btn-success">registrar patente</button>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control bg-light" id="cadena" placeholder="Ingrese numero de patente. Ej. AAA000 / AA000AA" ngModel name="cadena" #patenteCadena>
+        <button class="btn btn-success">registrar patente</button>
+    </div>
 </form>
 <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
-<button class="btn btn-danger" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">{{patente.cadena}}</button>
+<div class="container w-25">
+    <button class="border border-dark rounded-3 bg-gray text-center pe-auto" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">
+        <div class="bg-primary w-100">REPUBLICA ARGENTINA</div>
+        
+        
+        {{patente.cadena}}
+    </button>
+</div>
+<p *ngIf="estacionamientoPendiente">Estacionamiento iniciado: {{estacionamiento.inicio}}</p>
+<button *ngIf="estacionamientoPendiente" class="btn btn-success" (click)="finalizarEstacionamiento(estacionamiento.id)">finalizar</button>

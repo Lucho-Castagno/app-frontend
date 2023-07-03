@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Patente } from '../models/patente';
 import { Observable, catchError, throwError } from 'rxjs';
 import { UsuarioService } from './usuario.service';
@@ -18,12 +18,11 @@ export class PatenteService {
 
   constructor(private http: HttpClient, private usuarioService: UsuarioService) { }
 
-  addPatente(cadena: string): Observable<Patente> {
+  addPatente(cadena: string): Observable<HttpResponse<any>> {
     const params = new HttpParams().set('cadena', cadena);
-    let url = `${this.patenteRoute}/${this.usuarioService.getSesion().getCelular()}/crearPatente`;
-    return this.http.post<Patente>(url, null,{ params }).pipe(
+    let url = `${this.patenteRoute}/${this.usuarioService.getSesion().celular}/crearPatente`;
+    return this.http.post<any>(url, null, { params, observe: 'response' }).pipe(
       catchError(error => {
-        console.log("error en la solicitud");
         return throwError(error);
       })
     );

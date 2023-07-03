@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Usuario } from '../models/usuario';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Patente } from '../models/patente';
@@ -20,10 +20,9 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
-  loginUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(this.loginRoute, usuario, this.httpOptions).pipe(
+  loginUsuario(usuario: Usuario): Observable<HttpResponse<any>> {
+    return this.http.post<any>(this.loginRoute, usuario, { observe: 'response' }).pipe(
       catchError(error => {
-        console.log("error en la solicitud");
         return throwError(error);
       })
     );
@@ -33,15 +32,10 @@ export class UsuarioService {
     this.sesion = usuario;
   }
 
-  getUsuario(): Usuario {
-    return this.sesion;
-  }
-
-  getPatentes(): Observable<Patente[]> {
+  getPatentes(): Observable<HttpResponse<any>> {
     const url = `${this.usuarioRoute}/${this.sesion.celular}/patentes`;
-    return this.http.get<Patente[]>(url).pipe(
+    return this.http.get<Patente[]>(url, { observe: 'response' }).pipe(
       catchError(error => {
-        console.log("error al recibir patentes");
         return throwError(error);
       })
     );

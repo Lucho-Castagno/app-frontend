@@ -1,5 +1,8 @@
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable, empty } from 'rxjs';
+import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { Patente } from 'src/app/models/patente';
 import { EstacionamientoService } from 'src/app/service/estacionamiento.service';
 import { PatenteService } from 'src/app/service/patente.service';
@@ -12,6 +15,8 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class EstacionamientoComponent {
   patentes: Patente[] = [];
+  estacionamientoPendiente: boolean = false;
+  estacionamiento!: Estacionamiento;
   errorMessage: string = "";
 
   @ViewChild('patenteForm') patenteForm!: NgForm;
@@ -19,35 +24,58 @@ export class EstacionamientoComponent {
   constructor(private usuarioService: UsuarioService, private patenteService: PatenteService, private estacionamientoService: EstacionamientoService) { }
 
   ngOnInit() {
+    this.estacionamientoPendiente = false;
     this.getPatentes();
+    this.getEstacionamientoPendiente();
   }
 
   getPatentes(): void {
-    this.usuarioService.getPatentes().subscribe((patentes: Patente[]) => { 
-      this.patentes = patentes 
-    }, (error) => {
-      console.log('Error en el servicio: ', error);
-      this.errorMessage = "Celular y/o contraseña incorrectos.";
+    this.usuarioService.getPatentes().subscribe((response: HttpResponse<any>) => { 
+      this.patentes = response.body; 
+    }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error;
+    });
+  }
+
+  getEstacionamientoPendiente(): void {
+    this.estacionamientoService.getEstacionamientoPendiente(this.usuarioService.getSesion().celular).subscribe((response: HttpResponse<any>) => {
+      if (response.body != null) {
+        this.estacionamiento = response.body;
+        this.estacionamientoPendiente = true;
+      }
+    }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error;
     });
   }
 
   addPatente(cadena: string): void {
     if(!cadena) { 
-      this.errorMessage = "debe ingresar el numero de patente"; 
+      this.errorMessage = "Debe ingresar el numero de patente"; 
       return;
     };
-    this.patenteService.addPatente(cadena).subscribe((patente: Patente) => {
-      this.patentes.push(patente);
-    }, (error) => {
-      this.errorMessage = "Error en el formato de la cadena.";
+    this.patenteService.addPatente(cadena).subscribe((reponse: HttpResponse<any>) => {
+      this.patentes.push(reponse.body);
+    }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error;
     });
   }
 
   iniciarEstacionamiento(cadena: string) {
-    this.estacionamientoService.iniciarEstacionamiento(cadena).subscribe((message) => {
-      this.errorMessage = "iniciado";
-    }, (error) => {
-      this.errorMessage = "error";
+    this.estacionamientoService.iniciarEstacionamiento(cadena).subscribe((response: HttpResponse<any>) => {
+      this.errorMessage = response.body;
+      this.getEstacionamientoPendiente();
+    }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error;
+      this.getEstacionamientoPendiente();
+    });
+  }
+
+  finalizarEstacionamiento(id: number) {
+    this.estacionamientoService.finalizarEstacionamiento(id).subscribe((response: HttpResponse<any>) => {
+      this.errorMessage = response.body;
+    }, (error: HttpErrorResponse) => {
+      this.errorMessage = error.error;
+      this.estacionamientoPendiente = false;
     });
   }
 
