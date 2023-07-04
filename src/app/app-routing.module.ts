@@ -5,10 +5,12 @@ import { HomeComponent } from './components/home/home.component';
 import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { HistorialComponent } from './components/historial/historial.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
-  { path : "", component: LoginComponent },
-  { path : "home", component: HomeComponent,
+  { path: "", component: LoginComponent },
+  { path: "signup", component: SignupComponent},
+  { path: "home", component: HomeComponent,
     children: [
       { path: "estacionamiento", component: EstacionamientoComponent },
       { path: "cuenta", component: CuentaComponent },

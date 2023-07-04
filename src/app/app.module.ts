@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { HistorialComponent } from './components/historial/historial.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HistorialComponent } from './components/historial/historial.component';
     HomeComponent,
     EstacionamientoComponent,
     CuentaComponent,
-    HistorialComponent
+    HistorialComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

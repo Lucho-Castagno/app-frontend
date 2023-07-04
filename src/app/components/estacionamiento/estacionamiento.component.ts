@@ -1,7 +1,6 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable, empty } from 'rxjs';
 import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { Patente } from 'src/app/models/patente';
 import { EstacionamientoService } from 'src/app/service/estacionamiento.service';
