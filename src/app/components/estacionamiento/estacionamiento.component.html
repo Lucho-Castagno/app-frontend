@@ -5,6 +5,7 @@
     </div>
 </form>
 <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
+<ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'success'" *ngIf="successMessage">{{ successMessage }}</ngb-alert>
 <div class="container w-25">
     <button class="border border-dark rounded-3 bg-gray text-center pe-auto" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">
         <div class="bg-primary w-100">REPUBLICA ARGENTINA</div>

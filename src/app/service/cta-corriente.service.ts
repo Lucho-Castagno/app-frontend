@@ -9,7 +9,7 @@ import { CtaCorriente } from '../models/cta-corriente';
 export class CtaCorrienteService {
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json', observe: 'response' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   ctaRoute: string = 'http://localhost:8080/cuenta'

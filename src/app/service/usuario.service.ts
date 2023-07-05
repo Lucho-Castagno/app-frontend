@@ -10,7 +10,7 @@ import { CtaCorriente } from '../models/cta-corriente';
 })
 export class UsuarioService {
 
-  private sesion!: Usuario;
+  private sesion: Usuario = new Usuario();
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,14 +30,14 @@ export class UsuarioService {
   }
 
   registrarUsuario(usuario: Usuario): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.usuarioRoute, usuario, { observe: 'response' }).pipe(
+    return this.http.post(this.usuarioRoute, usuario, { observe: 'response', responseType: 'text' }).pipe(
       catchError(error => {
         return throwError(error);
       })
     );
   }
 
-  setUsuario(usuario: Usuario): void {
+  setSesion(usuario: Usuario): void {
     this.sesion = usuario;
   }
 

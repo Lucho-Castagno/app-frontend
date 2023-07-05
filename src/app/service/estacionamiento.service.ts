@@ -21,7 +21,7 @@ export class EstacionamientoService {
   iniciarEstacionamiento(cadena: string): Observable<HttpResponse<any>> {
     const params = new HttpParams().set('patente', cadena);
     let url = `${this.estacionamientoRoute}/iniciar/${this.usuarioService.getSesion().celular}`;
-    return this.http.post<string>(url, null, { params, observe: 'response' }).pipe(
+    return this.http.post(url, null, { params, observe: 'response', responseType: 'text' }).pipe(
       catchError(error => {
         return throwError(error);
       })
@@ -30,7 +30,7 @@ export class EstacionamientoService {
 
   finalizarEstacionamiento(id: number): Observable<HttpResponse<any>> {
     let url = `${this.estacionamientoRoute}/${id}/finalizar`;
-    return this.http.post<string>(url, null, { observe: 'response'}).pipe(
+    return this.http.post(url, null, { observe: 'response', responseType: 'text'}).pipe(
       catchError(error => {
         return throwError(error);
       })

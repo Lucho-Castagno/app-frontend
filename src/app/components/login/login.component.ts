@@ -22,9 +22,9 @@ export class LoginComponent {
     let email: string = "";
     this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) =>{
       if (response.status === 200) {
-        this.usuarioService.setUsuario( response.body );
+        this.usuarioService.setSesion( response.body );
         this.router.navigate(['/home']);
-      }
+      } 
     }, (error: HttpErrorResponse) => {
       this.reset();
       this.errorMessage = error.error;

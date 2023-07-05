@@ -31,7 +31,7 @@ export class SignupComponent {
       }
     }, (error: HttpErrorResponse) => {
       this.reset();
-      this.errorMessage = error.error;
+      this.errorMessage = error.message;
     });
   }
 

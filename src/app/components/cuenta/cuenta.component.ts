@@ -18,6 +18,7 @@ export class CuentaComponent {
   @ViewChild('cuentaForm') cuentaForm!: NgForm;
 
   ngOnInit() {
+    this.cuenta = new CtaCorriente();
     this.getCuentaCorriente();
   }
 
@@ -25,9 +26,7 @@ export class CuentaComponent {
 
   getCuentaCorriente() {
     this.usuarioService.getCuentaCorriente().subscribe((response: HttpResponse<any>) =>{
-      if (response.status === 200) {
-        this.cuenta = response.body as CtaCorriente;
-      }
+      this.cuenta = response.body as CtaCorriente;
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
     });
@@ -38,8 +37,10 @@ export class CuentaComponent {
       this.errorMessage = "Ingrese un monto a cargar.";
       return;
     }
-    this.ctaCorrienteService.addSaldoCuenta(this.cuenta.id ,monto).subscribe((response: HttpResponse<any>) => {
-      this.cuenta = response.body as CtaCorriente;
+    this.ctaCorrienteService.addSaldoCuenta(this.cuenta.id ,monto).subscribe((response: any) => {
+      let nuevaCuenta: CtaCorriente = response as CtaCorriente;
+      this.cuenta.saldo = nuevaCuenta.saldo;
+      this.reset();
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
     });
@@ -47,6 +48,12 @@ export class CuentaComponent {
 
   closeAlert() {
     this.errorMessage = "";
+  }
+
+  reset() {
+    this.cuentaForm.reset({
+        "monto": ""
+    });
   }
 
 }

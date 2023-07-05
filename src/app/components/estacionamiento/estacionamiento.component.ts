@@ -17,6 +17,7 @@ export class EstacionamientoComponent {
   estacionamientoPendiente: boolean = false;
   estacionamiento!: Estacionamiento;
   errorMessage: string = "";
+  successMessage: string = "";
 
   @ViewChild('patenteForm') patenteForm!: NgForm;
 
@@ -61,7 +62,7 @@ export class EstacionamientoComponent {
 
   iniciarEstacionamiento(cadena: string) {
     this.estacionamientoService.iniciarEstacionamiento(cadena).subscribe((response: HttpResponse<any>) => {
-      this.errorMessage = response.body;
+      this.successMessage = response.body;
       this.getEstacionamientoPendiente();
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
@@ -71,15 +72,16 @@ export class EstacionamientoComponent {
 
   finalizarEstacionamiento(id: number) {
     this.estacionamientoService.finalizarEstacionamiento(id).subscribe((response: HttpResponse<any>) => {
-      this.errorMessage = response.body;
+      this.successMessage = response.body;
+      this.estacionamientoPendiente = false;
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
-      this.estacionamientoPendiente = false;
     });
   }
 
   closeAlert() {
     this.errorMessage = "";
+    this.successMessage = "";
   }
 
   reset() {
