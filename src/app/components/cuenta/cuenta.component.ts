@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CtaCorriente } from 'src/app/models/cta-corriente';
 import { CtaCorrienteService } from 'src/app/service/cta-corriente.service';
+import { CtaEstacionamientoService } from 'src/app/service/cta-estacionamiento.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -17,12 +18,19 @@ export class CuentaComponent {
 
   @ViewChild('cuentaForm') cuentaForm!: NgForm;
 
+  constructor(private usuarioService: UsuarioService,
+    private ctaCorrienteService: CtaCorrienteService,
+    private ctaEstacionamientoService: CtaEstacionamientoService) { }
+
   ngOnInit() {
     this.cuenta = new CtaCorriente();
+
+    this.ctaEstacionamientoService.ctaCorrienteActualizada.subscribe(() => {
+      this.getCuentaCorriente();
+    });
+
     this.getCuentaCorriente();
   }
-
-  constructor(private usuarioService: UsuarioService, private ctaCorrienteService: CtaCorrienteService) { }
 
   getCuentaCorriente() {
     this.usuarioService.getCuentaCorriente().subscribe((response: HttpResponse<any>) =>{

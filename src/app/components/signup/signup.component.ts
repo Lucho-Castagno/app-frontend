@@ -26,12 +26,10 @@ export class SignupComponent {
     }
 
     this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) =>{
-      if (response.status === 200) {
-        this.alLogin();
-      }
+      this.alLogin();
     }, (error: HttpErrorResponse) => {
       this.reset();
-      this.errorMessage = error.message;
+      this.errorMessage = error.error;
     });
   }
 
