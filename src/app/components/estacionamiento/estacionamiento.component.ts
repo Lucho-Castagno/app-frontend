@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Estacionamiento } from 'src/app/models/estacionamiento';
 import { Patente } from 'src/app/models/patente';
-import { CtaEstacionamientoService } from 'src/app/service/cta-estacionamiento.service';
+import { sharedService } from 'src/app/service/shared.service';
 import { EstacionamientoService } from 'src/app/service/estacionamiento.service';
 import { PatenteService } from 'src/app/service/patente.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
@@ -25,7 +25,7 @@ export class EstacionamientoComponent {
   constructor(private usuarioService: UsuarioService,
     private patenteService: PatenteService,
     private estacionamientoService: EstacionamientoService,
-    private ctaEstacionamientoService: CtaEstacionamientoService) { }
+    private sharedService: sharedService) { }
 
   ngOnInit() {
     this.estacionamientoPendiente = false;
@@ -78,7 +78,7 @@ export class EstacionamientoComponent {
     this.estacionamientoService.finalizarEstacionamiento(id).subscribe((response: HttpResponse<any>) => {
       this.successMessage = response.body;
       this.estacionamientoPendiente = false;
-      this.ctaEstacionamientoService.notificarActualizacionCtaCorriente();
+      this.sharedService.notificarActualizacionCtaCorriente();
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
     });

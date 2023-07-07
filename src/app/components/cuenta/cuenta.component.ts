@@ -1,9 +1,9 @@
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { CtaCorriente } from 'src/app/models/cta-corriente';
 import { CtaCorrienteService } from 'src/app/service/cta-corriente.service';
-import { CtaEstacionamientoService } from 'src/app/service/cta-estacionamiento.service';
+import { sharedService } from 'src/app/service/shared.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   templateUrl: './cuenta.component.html',
   styleUrls: ['./cuenta.component.css']
 })
-export class CuentaComponent {
+export class CuentaComponent implements OnInit {
 
   errorMessage: string = "";
   cuenta!: CtaCorriente;
@@ -20,21 +20,23 @@ export class CuentaComponent {
 
   constructor(private usuarioService: UsuarioService,
     private ctaCorrienteService: CtaCorrienteService,
-    private ctaEstacionamientoService: CtaEstacionamientoService) { }
+    private sharedService: sharedService) { }
 
   ngOnInit() {
     this.cuenta = new CtaCorriente();
 
-    this.ctaEstacionamientoService.ctaCorrienteActualizada.subscribe(() => {
+    this.sharedService.ctaCorrienteActualizada.subscribe(() => {
       this.getCuentaCorriente();
     });
 
     this.getCuentaCorriente();
+
   }
 
   getCuentaCorriente() {
     this.usuarioService.getCuentaCorriente().subscribe((response: HttpResponse<any>) =>{
       this.cuenta = response.body as CtaCorriente;
+      this.sharedService.setCtaId(this.cuenta.id);
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
     });

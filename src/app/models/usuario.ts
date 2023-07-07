@@ -4,6 +4,4 @@ export class Usuario {
     email!: string;
     contraseña!: string;
 
-    
-
 }

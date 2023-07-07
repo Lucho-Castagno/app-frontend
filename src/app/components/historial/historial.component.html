@@ -1,1 +1,9 @@
-<p>historial works!</p>
+<h2>Movimientos</h2>
+<div class="pt-3">
+    <div class="border-bottom text-center" style="height: 0.9rem"></div>
+</div>
+<ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
+<div class="border border-dark rounded-3 bg-gray text-center pe-auto" *ngFor="let movimiento of movimientos">
+    {{movimiento.id}},{{movimiento.monto}},{{movimiento.fecha}},{{movimiento.tipo}}
+</div>
+
