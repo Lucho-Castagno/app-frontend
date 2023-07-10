@@ -12,7 +12,7 @@ import { UsuarioService } from 'src/app/service/usuario.service';
   styleUrls: ['./cuenta.component.css']
 })
 export class CuentaComponent implements OnInit {
-
+  successMessage: string = "";
   errorMessage: string = "";
   cuenta!: CtaCorriente;
 
@@ -50,6 +50,7 @@ export class CuentaComponent implements OnInit {
     this.ctaCorrienteService.addSaldoCuenta(this.cuenta.id ,monto).subscribe((response: any) => {
       let nuevaCuenta: CtaCorriente = response as CtaCorriente;
       this.cuenta.saldo = nuevaCuenta.saldo;
+      this. successMessage = "Saldo actualizado!"
       this.reset();
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
@@ -58,6 +59,7 @@ export class CuentaComponent implements OnInit {
 
   closeAlert() {
     this.errorMessage = "";
+    this.successMessage = "";
   }
 
   reset() {

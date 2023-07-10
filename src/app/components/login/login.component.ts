@@ -11,7 +11,6 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   errorMessage: string = "";
 
   @ViewChild('loginForm') loginForm!: NgForm;

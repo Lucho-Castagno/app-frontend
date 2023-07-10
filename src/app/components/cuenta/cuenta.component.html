@@ -11,6 +11,7 @@
         <input type="number" class="form-control bg-light" id="monto" placeholder="Ingrese un monto" ngModel name="monto" #monto>
     </div>
     <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
+    <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'success'" *ngIf="successMessage">{{ successMessage }}</ngb-alert>
     <div class="pt-3">
         <div class="border-bottom text-center" style="height: 0.9rem"></div>
     </div>

@@ -25,7 +25,7 @@ export class SignupComponent {
       return;
     }
 
-    this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) =>{
+    this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) => {
       this.alLogin();
     }, (error: HttpErrorResponse) => {
       this.reset();
