@@ -12,6 +12,7 @@ import { EstacionamientoComponent } from './components/estacionamiento/estaciona
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SignupComponent } from './components/signup/signup.component';
     EstacionamientoComponent,
     CuentaComponent,
     HistorialComponent,
-    SignupComponent
+    SignupComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

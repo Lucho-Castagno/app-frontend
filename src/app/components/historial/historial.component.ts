@@ -15,10 +15,16 @@ export class HistorialComponent implements OnInit {
   errorMessage: string = ""; 
   movimientos: Movimiento[] = [];
 
-  constructor(private sharedService: sharedService, private ctaCorrienteService: CtaCorrienteService) { }
+  constructor(private sharedService: sharedService,
+    private ctaCorrienteService: CtaCorrienteService) { }
 
   ngOnInit() {
     this.ctaCorrienteId = this.sharedService.getCtaId();
+
+    this.sharedService.nuevosMovimientos.subscribe(() => {
+      this.getMovimientosCuenta(this.ctaCorrienteId);
+    });
+
     this.getMovimientosCuenta(this.ctaCorrienteId);
   }
 

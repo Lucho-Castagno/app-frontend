@@ -52,6 +52,7 @@ export class CuentaComponent implements OnInit {
       this.cuenta.saldo = nuevaCuenta.saldo;
       this. successMessage = "Saldo actualizado!"
       this.reset();
+      this.sharedService.notificarNuevosMovimientos();
     }, (error: HttpErrorResponse) => {
       this.errorMessage = error.error;
     });

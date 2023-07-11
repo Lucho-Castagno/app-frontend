@@ -6,18 +6,21 @@ import { EstacionamientoComponent } from './components/estacionamiento/estaciona
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { autenticacionGuard } from './autenticacion.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: "", component: LoginComponent },
+  { path: "", component: LoginComponent }, 
   { path: "signup", component: SignupComponent},
-  { path: "home", component: HomeComponent,
+  { path: "home", component: HomeComponent, canActivate: [autenticacionGuard],
     children: [
       { path: "estacionamiento", component: EstacionamientoComponent },
       { path: "cuenta", component: CuentaComponent },
       { path: "historial", component: HistorialComponent },
       { path: "", redirectTo: "estacionamiento", pathMatch: 'full' }
     ]
-  }
+  },
+  { path: "**", pathMatch: 'full', component: PageNotFoundComponent }
 ];
 
 @NgModule({

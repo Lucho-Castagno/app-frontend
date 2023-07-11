@@ -3,7 +3,18 @@
     <div class="border-bottom text-center" style="height: 0.9rem"></div>
 </div>
 <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
-<div class="border border-dark rounded-3 bg-gray text-center pe-auto" *ngFor="let movimiento of movimientos">
-    {{movimiento.id}},{{movimiento.monto}},{{movimiento.fecha}},{{movimiento.tipo}}
+<div class="row border border-dark rounded-3 p-2 mb-3" *ngFor="let movimiento of movimientos">
+    <div class="col-2">
+        <h5>Tipo</h5>
+        <p>{{movimiento.tipo}}</p>
+    </div>
+    <div class="col-5">
+        <h5>Monto</h5>
+        <p>$ {{movimiento.monto}}</p>
+    </div>
+    <div class="col-5">
+        <h5>Fecha</h5>
+        <p>{{movimiento.fecha}}</p>
+    </div>
 </div>
 

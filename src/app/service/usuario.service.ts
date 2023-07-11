@@ -10,8 +10,6 @@ import { CtaCorriente } from '../models/cta-corriente';
 })
 export class UsuarioService {
 
-  private sesion: Usuario = new Usuario();
-
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -37,12 +35,8 @@ export class UsuarioService {
     );
   }
 
-  setSesion(usuario: Usuario): void {
-    this.sesion = usuario;
-  }
-
   getPatentes(): Observable<HttpResponse<any>> {
-    const url = `${this.usuarioRoute}/${this.sesion.celular}/patentes`;
+    const url = `${this.usuarioRoute}/${this.getSesion().celular}/patentes`;
     return this.http.get<Patente[]>(url, { observe: 'response' }).pipe(
       catchError(error => {
         return throwError(error);
@@ -51,7 +45,7 @@ export class UsuarioService {
   }
 
   getCuentaCorriente(): Observable<HttpResponse<any>> {
-    const url = `${this.usuarioRoute}/${this.sesion.celular}/cuenta`;
+    const url = `${this.usuarioRoute}/${this.getSesion().celular}/cuenta`;
     return this.http.get<CtaCorriente>(url, { observe: 'response' }).pipe(
       catchError(error => {
         return throwError(error);
@@ -60,7 +54,9 @@ export class UsuarioService {
   }
 
   getSesion(): Usuario {
-    return this.sesion;
+
+    return JSON.parse(localStorage.getItem("sesion")!);
+    
   }
 
 }

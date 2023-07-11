@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { UsuarioService } from './usuario.service';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Estacionamiento } from '../models/estacionamiento';
+import { Patente } from '../models/patente';
 
 @Injectable({
   providedIn: 'root'

@@ -13,7 +13,7 @@ export class HomeComponent {
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   cerrarSesion() {
-    this.usuarioService.setSesion(new Usuario());
+    localStorage.removeItem('sesion');
     this.router.navigateByUrl("/");
   }
 

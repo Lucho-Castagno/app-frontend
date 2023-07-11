@@ -6,12 +6,17 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class sharedService {
 
   ctaCorrienteActualizada = new EventEmitter<void>();
+  nuevosMovimientos = new EventEmitter<void>();
   private ctaCorrienteId!: number;
 
   constructor() { }
 
   notificarActualizacionCtaCorriente() {
     this.ctaCorrienteActualizada.emit();
+  }
+
+  notificarNuevosMovimientos() {
+    this.nuevosMovimientos.emit();
   }
 
   public setCtaId(id: number) {

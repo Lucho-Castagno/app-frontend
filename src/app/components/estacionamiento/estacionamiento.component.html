@@ -6,13 +6,20 @@
 </form>
 <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
 <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'success'" *ngIf="successMessage">{{ successMessage }}</ngb-alert>
-<div class="container w-25">
-    <button class="border border-dark rounded-3 bg-gray text-center pe-auto" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">
-        <div class="bg-primary w-100">REPUBLICA ARGENTINA</div>
-        
-        
-        {{patente.cadena}}
-    </button>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <button class="border border-dark rounded-3 bg-gray text-center pe-auto mb-2" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">
+                <div class="bg-primary w-100">REPUBLICA ARGENTINA</div>
+                {{patente.cadena}}
+            </button>
+        </div>
+        <div class="col">
+            <div class="border border-dark rounded-3 p-3" *ngIf="estacionamientoPendiente">
+                <p>Estacionamiento iniciado: {{estacionamiento.inicio}} | patente: {{estacionamiento.patente.cadena}}</p>
+                <button class="btn btn-danger" (click)="finalizarEstacionamiento(estacionamiento.id)">finalizar</button>
+            </div>
+        </div>
+    </div>
 </div>
-<p *ngIf="estacionamientoPendiente">Estacionamiento iniciado: {{estacionamiento.inicio}}</p>
-<button *ngIf="estacionamientoPendiente" class="btn btn-success" (click)="finalizarEstacionamiento(estacionamiento.id)">finalizar</button>
