@@ -9,15 +9,15 @@
 
 <div class="container">
     <div class="row">
-        <div class="col">
-            <button class="border border-dark rounded-3 bg-gray text-center pe-auto mb-2" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)">
-                <div class="bg-primary w-100">REPUBLICA ARGENTINA</div>
+        <div class="col-sm-4">
+            <button class="border border-dark rounded-3 bg-gray text-center pe-auto mb-3 p-0" *ngFor="let patente of patentes" (click)="iniciarEstacionamiento(patente.cadena)" placement="end" ngbTooltip="Iniciar estacionamiento.">
+                <div class="bg-primary w-100 rounded-top"><span>REPUBLICA ARGENTINA</span></div>
                 {{patente.cadena}}
             </button>
         </div>
-        <div class="col">
+        <div class="col-sm-8">
             <div class="border border-dark rounded-3 p-3" *ngIf="estacionamientoPendiente">
-                <p>Estacionamiento iniciado: {{estacionamiento.inicio}} | patente: {{estacionamiento.patente.cadena}}</p>
+                <p>Estacionamiento iniciado: {{estacionamiento.inicio | date:'MM/dd/yyyy @ h:mma'}} | patente: {{estacionamiento.patente.cadena}}</p>
                 <button class="btn btn-danger" (click)="finalizarEstacionamiento(estacionamiento.id)">finalizar</button>
             </div>
         </div>

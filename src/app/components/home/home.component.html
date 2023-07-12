@@ -5,15 +5,15 @@
                 <div class="text-center">
                    <span class="text-center">"app de estacionamiento"</span>
                 </div>
-                <div class="container w-50">
-                    <div class="row mt-4 text-center">
-                        <div class="col-4">
+                <div class="container w-100 d-flex justify-content-center">
+                    <div class="row mt-4 g-2">
+                        <div class="col-auto">
                             <a [routerLink]="['estacionamiento']" class="btn btn-outline-info">reserva</a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-auto">
                             <a [routerLink]="['historial']" class="btn btn-outline-info">movimientos</a>
                         </div>
-                        <div class="col-4">
+                        <div class="col-auto">
                             <button (click)="cerrarSesion()" class="btn btn-outline-info">salir</button>
                         </div>
                     </div>
@@ -23,13 +23,13 @@
         </div>
         
         <div class="row gx-5">
-            <div class="col-8">
+            <div class="col-md-8">
                 <div class="bg-white p-5 mt-4 rounded-5 text-secondary shadow">
                     <router-outlet></router-outlet>
                 </div>
             </div>
             
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="bg-white p-5 mt-4 rounded-5 text-secondary shadow">
                     <app-cuenta></app-cuenta>
                 </div>
