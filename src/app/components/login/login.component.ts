@@ -18,8 +18,7 @@ export class LoginComponent {
   constructor(private usuarioService: UsuarioService, private router: Router) { }
 
   loginUsuario(celular: string, contraseña: string): void {
-    let email: string = "";
-    this.usuarioService.loginUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) =>{
+    this.usuarioService.loginUsuario({celular, contraseña} as Usuario).subscribe((response: HttpResponse<any>) =>{
       if (response.status === 200) {
         localStorage.setItem("sesion", JSON.stringify(response.body));
         this.router.navigate(['/home']);

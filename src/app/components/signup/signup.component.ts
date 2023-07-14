@@ -13,6 +13,7 @@ import { Location } from '@angular/common';
 })
 export class SignupComponent {
   errorMessage: string = "";
+  successMessage: string = "";
 
   @ViewChild('signupForm') signupForm!: NgForm;
 
@@ -26,7 +27,7 @@ export class SignupComponent {
     }
 
     this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) => {
-      this.alLogin();
+      this.successMessage = response.body;
     }, (error: HttpErrorResponse) => {
       this.reset();
       this.errorMessage = error.error;
@@ -35,6 +36,7 @@ export class SignupComponent {
 
   closeAlert() {
     this.errorMessage = "";
+    this.successMessage = "";
   }
 
   reset() {
