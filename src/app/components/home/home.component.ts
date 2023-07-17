@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { SesionService } from 'src/app/service/sesion.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +9,10 @@ import { UsuarioService } from 'src/app/service/usuario.service';
 })
 export class HomeComponent {
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private sesionService: SesionService, private router: Router) { }
 
   cerrarSesion() {
-    localStorage.removeItem('sesion');
+    this.sesionService.logoutUsuario();
     this.router.navigateByUrl("/");
   }
 

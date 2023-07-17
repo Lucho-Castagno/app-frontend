@@ -7,6 +7,7 @@ import { sharedService } from 'src/app/service/shared.service';
 import { EstacionamientoService } from 'src/app/service/estacionamiento.service';
 import { PatenteService } from 'src/app/service/patente.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
+import { SesionService } from 'src/app/service/sesion.service';
 
 @Component({
   selector: 'app-estacionamiento',
@@ -23,6 +24,7 @@ export class EstacionamientoComponent {
   @ViewChild('patenteForm') patenteForm!: NgForm;
 
   constructor(private usuarioService: UsuarioService,
+    private sesionService: SesionService,
     private patenteService: PatenteService,
     private estacionamientoService: EstacionamientoService,
     private sharedService: sharedService) { }
@@ -42,7 +44,7 @@ export class EstacionamientoComponent {
   }
 
   getEstacionamientoPendiente(): void {
-    this.estacionamientoService.getEstacionamientoPendiente(this.usuarioService.getSesion().celular).subscribe((response: HttpResponse<any>) => {
+    this.estacionamientoService.getEstacionamientoPendiente(this.sesionService.getSesionCelular()).subscribe((response: HttpResponse<any>) => {
       if (response.body != null) {
         this.estacionamiento = response.body;
         this.estacionamientoPendiente = true;

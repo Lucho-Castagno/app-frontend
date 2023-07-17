@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UsuarioService } from '../../service/usuario.service';
 import { Router } from '@angular/router';
-import { Usuario } from '../../models/usuario';
+import { Credenciales } from '../../models/usuario';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { SesionService } from 'src/app/service/sesion.service';
 
 @Component({
   selector: 'app-login',
@@ -15,14 +15,11 @@ export class LoginComponent {
 
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private sesionService: SesionService, private router: Router) { }
 
   loginUsuario(celular: string, contraseña: string): void {
-    this.usuarioService.loginUsuario({celular, contraseña} as Usuario).subscribe((response: HttpResponse<any>) =>{
-      if (response.status === 200) {
-        localStorage.setItem("sesion", JSON.stringify(response.body));
-        this.router.navigate(['/home']);
-      } 
+    this.sesionService.loginUsuario({celular, contraseña} as Credenciales).subscribe((response: HttpResponse<any>) =>{
+      this.router.navigate(['/home']);
     }, (error: HttpErrorResponse) => {
       this.reset();
       this.errorMessage = error.error;

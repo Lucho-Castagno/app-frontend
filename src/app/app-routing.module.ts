@@ -6,7 +6,7 @@ import { EstacionamientoComponent } from './components/estacionamiento/estaciona
 import { CuentaComponent } from './components/cuenta/cuenta.component';
 import { HistorialComponent } from './components/historial/historial.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { autenticacionGuard } from './autenticacion.guard';
+import { autenticacionGuard } from './helpers/autenticacion.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
