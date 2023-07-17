@@ -4,6 +4,7 @@ import { Usuario } from '../models/usuario';
 import { Observable, Subject, catchError, throwError } from 'rxjs';
 import { Patente } from '../models/patente';
 import { CtaCorriente } from '../models/cta-corriente';
+import { SesionService } from './sesion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,21 +15,13 @@ export class UsuarioService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private loginRoute: string = 'http://localhost:8080/login';
   private usuarioRoute: string = 'http://localhost:8080/usuarios';
+  private registerRoute: string = 'http://localhost:8080/auth/register';
 
-  constructor(private http: HttpClient) { }
-
-  loginUsuario(usuario: Usuario): Observable<HttpResponse<any>> {
-    return this.http.post<any>(this.loginRoute, usuario, { observe: 'response' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
-  }
+  constructor(private http: HttpClient, private sesionService: SesionService) { }
 
   registrarUsuario(usuario: Usuario): Observable<HttpResponse<any>> {
-    return this.http.post(this.usuarioRoute, usuario, { observe: 'response', responseType: 'text' }).pipe(
+    return this.http.post(this.registerRoute, usuario, { observe: 'response', responseType: 'text' }).pipe(
       catchError(error => {
         return throwError(error);
       })
@@ -36,7 +29,7 @@ export class UsuarioService {
   }
 
   getPatentes(): Observable<HttpResponse<any>> {
-    const url = `${this.usuarioRoute}/${this.getSesion().celular}/patentes`;
+    const url = `${this.usuarioRoute}/${this.sesionService.getSesionCelular()}/patentes`;
     return this.http.get<Patente[]>(url, { observe: 'response' }).pipe(
       catchError(error => {
         return throwError(error);
@@ -45,18 +38,12 @@ export class UsuarioService {
   }
 
   getCuentaCorriente(): Observable<HttpResponse<any>> {
-    const url = `${this.usuarioRoute}/${this.getSesion().celular}/cuenta`;
+    const url = `${this.usuarioRoute}/${this.sesionService.getSesionCelular()}/cuenta`;
     return this.http.get<CtaCorriente>(url, { observe: 'response' }).pipe(
       catchError(error => {
         return throwError(error);
       })
     );
-  }
-
-  getSesion(): Usuario {
-
-    return JSON.parse(localStorage.getItem("sesion")!);
-    
   }
 
 }
