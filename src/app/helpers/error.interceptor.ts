@@ -18,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status == 403) {
-          this.errorMessageService.setMensajeError("Usuario y/o contraseña incorrecta.");
+          this.errorMessageService.setMensajeError("Autenticacion invalida.");
         } else {
           this.errorMessageService.setMensajeError(error.error);
         }
