@@ -18,20 +18,12 @@ export class CtaCorrienteService {
 
   addSaldoCuenta(id: number, monto: number): Observable<HttpResponse<any>> {
     const url = `${this.ctaRoute}/${id}/${monto}`;
-    return this.http.post<any>(url, null, this.httpOptions).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<any>(url, null, this.httpOptions);
   }
 
   getMovimientosCuenta(id: number): Observable<HttpResponse<any>> {
     const url = `${this.ctaRoute}/${id}/movimientos`;
-    return this.http.get<Movimiento[]>(url, { observe: 'response' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.get<Movimiento[]>(url, { observe: 'response' });
   }
 
 }

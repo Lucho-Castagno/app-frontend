@@ -20,11 +20,7 @@ export class PatenteService {
   addPatente(cadena: string): Observable<HttpResponse<any>> {
     const params = new HttpParams().set('cadena', cadena);
     let url = `${this.patenteRoute}/${this.sesionService.getSesionCelular()}/crearPatente`;
-    return this.http.post<any>(url, null, { params, observe: 'response' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post<any>(url, null, { params, observe: 'response' });
   }
 
 }

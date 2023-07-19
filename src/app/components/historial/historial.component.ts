@@ -2,6 +2,7 @@ import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Movimiento } from 'src/app/models/movimiento';
 import { CtaCorrienteService } from 'src/app/service/cta-corriente.service';
+import { ErrorMessageService } from 'src/app/service/error-message.service';
 import { sharedService } from 'src/app/service/shared.service';
 
 @Component({
@@ -12,11 +13,12 @@ import { sharedService } from 'src/app/service/shared.service';
 export class HistorialComponent implements OnInit {
   
   ctaCorrienteId!: number;
-  errorMessage: string = ""; 
+  errorMessage: string | null = null;
   movimientos: Movimiento[] = [];
 
   constructor(private sharedService: sharedService,
-    private ctaCorrienteService: CtaCorrienteService) { }
+    private ctaCorrienteService: CtaCorrienteService,
+    private errorMessageService: ErrorMessageService) { }
 
   ngOnInit() {
     this.ctaCorrienteId = this.sharedService.getCtaId();
@@ -31,8 +33,8 @@ export class HistorialComponent implements OnInit {
   getMovimientosCuenta(id: number) {
     this.ctaCorrienteService.getMovimientosCuenta(id).subscribe((response: HttpResponse<any>) => {
       this.movimientos = response.body;
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 

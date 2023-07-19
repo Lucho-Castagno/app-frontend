@@ -8,6 +8,7 @@ import { EstacionamientoService } from 'src/app/service/estacionamiento.service'
 import { PatenteService } from 'src/app/service/patente.service';
 import { UsuarioService } from 'src/app/service/usuario.service';
 import { SesionService } from 'src/app/service/sesion.service';
+import { ErrorMessageService } from 'src/app/service/error-message.service';
 
 @Component({
   selector: 'app-estacionamiento',
@@ -18,7 +19,7 @@ export class EstacionamientoComponent {
   patentes: Patente[] = [];
   estacionamientoPendiente: boolean = false;
   estacionamiento!: Estacionamiento;
-  errorMessage: string = "";
+  errorMessage: string | null = null;
   successMessage: string = "";
 
   @ViewChild('patenteForm') patenteForm!: NgForm;
@@ -27,7 +28,8 @@ export class EstacionamientoComponent {
     private sesionService: SesionService,
     private patenteService: PatenteService,
     private estacionamientoService: EstacionamientoService,
-    private sharedService: sharedService) { }
+    private sharedService: sharedService,
+    private errorMessageService: ErrorMessageService) { }
 
   ngOnInit() {
     this.estacionamientoPendiente = false;
@@ -38,8 +40,8 @@ export class EstacionamientoComponent {
   getPatentes(): void {
     this.usuarioService.getPatentes().subscribe((response: HttpResponse<any>) => { 
       this.patentes = response.body; 
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 
@@ -49,8 +51,8 @@ export class EstacionamientoComponent {
         this.estacionamiento = response.body;
         this.estacionamientoPendiente = true;
       }
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 
@@ -61,8 +63,8 @@ export class EstacionamientoComponent {
     };
     this.patenteService.addPatente(cadena).subscribe((reponse: HttpResponse<any>) => {
       this.patentes.push(reponse.body);
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 
@@ -70,8 +72,8 @@ export class EstacionamientoComponent {
     this.estacionamientoService.iniciarEstacionamiento(cadena).subscribe((response: HttpResponse<any>) => {
       this.successMessage = response.body;
       this.getEstacionamientoPendiente();
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
       this.getEstacionamientoPendiente();
     });
   }
@@ -81,8 +83,8 @@ export class EstacionamientoComponent {
       this.successMessage = response.body;
       this.estacionamientoPendiente = false;
       this.sharedService.notificarActualizacionCtaCorriente();
-    }, (error: HttpErrorResponse) => {
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 

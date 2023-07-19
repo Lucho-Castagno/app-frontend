@@ -5,6 +5,7 @@ import { Usuario } from 'src/app/models/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
 
 import { Location } from '@angular/common';
+import { ErrorMessageService } from 'src/app/service/error-message.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,25 +13,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  errorMessage: string = "";
+  errorMessage: string | null = null;
   successMessage: string = "";
 
   @ViewChild('signupForm') signupForm!: NgForm;
 
-  constructor(private usuarioService: UsuarioService, private location: Location) { }
+  constructor(private usuarioService: UsuarioService,
+    private location: Location,
+    private errorMessageService: ErrorMessageService) { }
 
   registrarUsuario(celular: string, contraseña: string, email: string): void {
-
-    if(!celular || !contraseña || !email) {
-      this.errorMessage = "Todos los campos son requeridos."
-      return;
-    }
-
     this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) => {
       this.successMessage = response.body;
-    }, (error: HttpErrorResponse) => {
-      this.reset();
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 

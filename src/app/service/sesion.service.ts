@@ -17,11 +17,7 @@ export class SesionService {
       map((response: HttpResponse<any>) => {
         this.setSesion(response.body);
         return response;
-      }),
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+      }));
   }
 
   setSesion(body: any) {

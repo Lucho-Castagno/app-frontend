@@ -21,29 +21,17 @@ export class UsuarioService {
   constructor(private http: HttpClient, private sesionService: SesionService) { }
 
   registrarUsuario(usuario: Usuario): Observable<HttpResponse<any>> {
-    return this.http.post(this.registerRoute, usuario, { observe: 'response', responseType: 'text' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.post(this.registerRoute, usuario, { observe: 'response', responseType: 'text' });
   }
 
   getPatentes(): Observable<HttpResponse<any>> {
     const url = `${this.usuarioRoute}/${this.sesionService.getSesionCelular()}/patentes`;
-    return this.http.get<Patente[]>(url, { observe: 'response' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.get<Patente[]>(url, { observe: 'response' });
   }
 
   getCuentaCorriente(): Observable<HttpResponse<any>> {
     const url = `${this.usuarioRoute}/${this.sesionService.getSesionCelular()}/cuenta`;
-    return this.http.get<CtaCorriente>(url, { observe: 'response' }).pipe(
-      catchError(error => {
-        return throwError(error);
-      })
-    );
+    return this.http.get<CtaCorriente>(url, { observe: 'response' });
   }
 
 }

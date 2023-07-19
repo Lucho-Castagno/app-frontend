@@ -4,6 +4,7 @@ import { Credenciales } from '../../models/usuario';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { SesionService } from 'src/app/service/sesion.service';
+import { ErrorMessageService } from 'src/app/service/error-message.service';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +12,19 @@ import { SesionService } from 'src/app/service/sesion.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  errorMessage: string = "";
+  errorMessage: string | null = null;
 
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  constructor(private sesionService: SesionService, private router: Router) { }
+  constructor(private sesionService: SesionService,
+    private router: Router,
+    private errorMessageService: ErrorMessageService) { }
 
   loginUsuario(celular: string, contraseña: string): void {
     this.sesionService.loginUsuario({celular, contraseña} as Credenciales).subscribe((response: HttpResponse<any>) =>{
       this.router.navigate(['/home']);
-    }, (error: HttpErrorResponse) => {
-      this.reset();
-      this.errorMessage = error.error;
+    }, () => {
+      this.errorMessage = this.errorMessageService.getMensajeError();
     });
   }
 
