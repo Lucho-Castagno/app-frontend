@@ -6,19 +6,19 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { SesionService } from '../service/sesion.service';
+import { SessionService } from '../service/session.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private sesionService: SesionService) {}
+  constructor(private sessionService: SessionService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     
     if (request.url.includes('/auth/register') || request.url.includes('/auth/login')) {
       return next.handle(request);
     } else {
-      const token = this.sesionService.getSesionToken();
+      const token = this.sessionService.getSessionToken();
 
       if (token) {
         const cloned = request.clone({

@@ -8,9 +8,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
-import { EstacionamientoComponent } from './components/estacionamiento/estacionamiento.component';
-import { CuentaComponent } from './components/cuenta/cuenta.component';
-import { HistorialComponent } from './components/historial/historial.component';
+import { ParkingComponent } from './components/parking/parking.component';
+import { AccountComponent } from './components/account/account.component';
+import { MovementsComponent } from './components/movements/movements.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AuthInterceptor } from './helpers/auth.interceptor';
@@ -21,9 +21,9 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    EstacionamientoComponent,
-    CuentaComponent,
-    HistorialComponent,
+    ParkingComponent,
+    AccountComponent,
+    MovementsComponent,
     SignupComponent,
     PageNotFoundComponent
   ],

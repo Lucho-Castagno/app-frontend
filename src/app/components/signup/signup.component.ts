@@ -1,16 +1,15 @@
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Usuario } from 'src/app/models/usuario';
-import { UsuarioService } from 'src/app/service/usuario.service';
+import { User } from 'src/app/models/user';
+import { UserService } from 'src/app/service/user.service';
 
 import { Location } from '@angular/common';
 import { ErrorMessageService } from 'src/app/service/error-message.service';
 
 @Component({
   selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  templateUrl: './signup.component.html'
 })
 export class SignupComponent {
   errorMessage: string | null = null;
@@ -18,15 +17,15 @@ export class SignupComponent {
 
   @ViewChild('signupForm') signupForm!: NgForm;
 
-  constructor(private usuarioService: UsuarioService,
+  constructor(private userService: UserService,
     private location: Location,
     private errorMessageService: ErrorMessageService) { }
 
-  registrarUsuario(celular: string, contraseña: string, email: string): void {
-    this.usuarioService.registrarUsuario({celular, contraseña, email} as Usuario).subscribe((response: HttpResponse<any>) => {
+  signUpUser(cellphone: string, password: string, email: string): void {
+    this.userService.signUpUser({cellphone, password, email} as User).subscribe((response: HttpResponse<any>) => {
       this.successMessage = response.body;
     }, () => {
-      this.errorMessage = this.errorMessageService.getMensajeError();
+      this.errorMessage = this.errorMessageService.getErrorMessage();
     });
   }
 
@@ -37,13 +36,13 @@ export class SignupComponent {
 
   reset() {
     this.signupForm.reset({
-        "celular": "",
-        "contraseña": "",
+        "cellphone": "",
+        "password": "",
         "email": ""
     });
   }
 
-  alLogin() {
+  toLogin() {
     this.location.back();
   }
 

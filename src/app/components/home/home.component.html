@@ -8,13 +8,13 @@
                 <div class="container w-100 d-flex justify-content-center">
                     <div class="row mt-4 g-2">
                         <div class="col-auto">
-                            <a [routerLink]="['estacionamiento']" class="btn btn-outline-info">reserva</a>
+                            <a [routerLink]="['parking']" class="btn btn-outline-info">reserva</a>
                         </div>
                         <div class="col-auto">
-                            <a [routerLink]="['historial']" class="btn btn-outline-info">movimientos</a>
+                            <a [routerLink]="['movements']" class="btn btn-outline-info">movimientos</a>
                         </div>
                         <div class="col-auto">
-                            <button (click)="cerrarSesion()" class="btn btn-outline-info">salir</button>
+                            <button (click)="logOutUser()" class="btn btn-outline-info">salir</button>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
             
             <div class="col-md-4">
                 <div class="bg-white p-5 mt-4 rounded-5 text-secondary shadow">
-                    <app-cuenta></app-cuenta>
+                    <app-account></app-account>
                 </div>
             </div>
 

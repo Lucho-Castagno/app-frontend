@@ -12,10 +12,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let movimiento of movimientos">
-            <td>{{movimiento.tipo}}</td>
-            <td>$ {{movimiento.monto}}</td>
-            <td>{{movimiento.fecha | date:'MM/dd/yyyy @ h:mma'}}</td>
+        <tr *ngFor="let movement of movements">
+            <td>{{movement.type}}</td>
+            <td>$ {{movement.amount}}</td>
+            <td>{{movement.date | date:'MM/dd/yyyy @ h:mma'}}</td>
         </tr>
     </tbody>
 </table>

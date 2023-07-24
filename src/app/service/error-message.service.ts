@@ -4,16 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ErrorMessageService {
-  private mensajeError: string | null = null;
+  private errorMessage: string | null = null;
 
   constructor() { }
 
-  setMensajeError(mensaje: string): void {
-    this.mensajeError = mensaje;
+  setErrorMessage(message: string): void {
+    this.errorMessage = message;
   }
 
-  getMensajeError() : string | null {
-    return this.mensajeError;
+  getErrorMessage() : string | null {
+    return this.errorMessage;
   }
 
 }

@@ -1,0 +1,25 @@
+<form #plateForm="ngForm" (ngSubmit)="addPlate(plate.value)">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control bg-light" id="plate" placeholder="Ingrese numero de patente. Ej. AAA000 / AA000AA" ngModel name="plate" #plate>
+        <button class="btn btn-success">registrar patente</button>
+    </div>
+</form>
+<ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
+<ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'success'" *ngIf="successMessage">{{ successMessage }}</ngb-alert>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <button class="border border-dark rounded-3 bg-gray text-center pe-auto mb-3 p-0" *ngFor="let plate of plates" (click)="startParking(plate.plate)" placement="end" ngbTooltip="Iniciar estacionamiento.">
+                <div class="bg-primary w-100 rounded-top"><span>REPUBLICA ARGENTINA</span></div>
+                {{plate.plate}}
+            </button>
+        </div>
+        <div class="col-sm-8">
+            <div class="border border-dark rounded-3 p-3" *ngIf="pendingParking">
+                <p>Estacionamiento iniciado: {{parking.start | date:'MM/dd/yyyy @ h:mma'}} | patente: {{parking.plate.plate}}</p>
+                <button class="btn btn-danger" (click)="finishParking(parking.id)">finalizar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,14 +4,14 @@
         <div class="text-center">
            <span class="text-center">"app de estacionamiento"</span>
         </div>
-        <form #loginForm="ngForm" (ngSubmit)="loginUsuario(usuarioCelular.value, usuarioClave.value)">
+        <form #loginForm="ngForm" (ngSubmit)="loginUser(cellphone.value, password.value)">
             <div class="mt-4">
-                <label for="celular" class="form-label">Celular</label>
-                <input type="text" class="form-control bg-light" id="celular" placeholder="Ingrese un celular" ngModel name="celular" #usuarioCelular>
+                <label for="cellphone" class="form-label">Celular</label>
+                <input type="text" class="form-control bg-light" id="cellphone" placeholder="Ingrese un celular" ngModel name="cellphone" #cellphone>
             </div>
             <div class="mt-3 mb-3">
-                <label for="contraseña" class="form-label">Contraseña</label> 
-                <input type="password" class="form-control bg-light" id="contraseña" placeholder="Ingrese una contraseña" ngModel name="contraseña" #usuarioClave>
+                <label for="password" class="form-label">Contraseña</label> 
+                <input type="password" class="form-control bg-light" id="password" placeholder="Ingrese una contraseña" ngModel name="password" #password>
             </div>
             <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
             <div class="pt-3">

@@ -1,30 +1,29 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Credenciales } from '../../models/usuario';
+import { Credentials } from '../../models/user';
 import { NgForm } from '@angular/forms';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { SesionService } from 'src/app/service/sesion.service';
+import { HttpResponse } from '@angular/common/http';
+import { SessionService } from 'src/app/service/session.service';
 import { ErrorMessageService } from 'src/app/service/error-message.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   errorMessage: string | null = null;
 
   @ViewChild('loginForm') loginForm!: NgForm;
 
-  constructor(private sesionService: SesionService,
+  constructor(private sessionService: SessionService,
     private router: Router,
     private errorMessageService: ErrorMessageService) { }
 
-  loginUsuario(celular: string, contraseña: string): void {
-    this.sesionService.loginUsuario({celular, contraseña} as Credenciales).subscribe((response: HttpResponse<any>) =>{
+  loginUser(cellphone: string, password: string): void {
+    this.sessionService.loginUser({cellphone, password} as Credentials).subscribe((response: HttpResponse<any>) =>{
       this.router.navigate(['/home']);
     }, () => {
-      this.errorMessage = this.errorMessageService.getMensajeError();
+      this.errorMessage = this.errorMessageService.getErrorMessage();
     });
   }
 
@@ -34,8 +33,8 @@ export class LoginComponent {
 
   reset() {
     this.loginForm.reset({
-        "celular": "",
-        "contraseña": ""
+        "cellphone": "",
+        "password": ""
     });
   }
 
