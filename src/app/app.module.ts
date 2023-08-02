@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { LanguageSelectorComponent } from './components/language-selector/language-selector.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +33,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     AccountComponent,
     MovementsComponent,
     SignupComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LanguageSelectorComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +42,13 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     NgbModule,
     HttpClientModule,
     FormsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     {
