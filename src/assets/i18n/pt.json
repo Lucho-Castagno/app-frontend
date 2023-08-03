@@ -1,6 +1,65 @@
 {
-    "spanish": "Espanhol",
-    "english": "Inglês",
-    "portuguese": "Português",
-    "italian": "Italiano"
+    "language-selector" : {
+        "spanish" : "Espanhol",
+        "english" : "Inglês",
+        "portuguese" : "Português",
+        "italian" : "Italiano"
+    },
+    "account" : {
+        "account" : "Conta corrente",
+        "balance" : "Balanço",
+        "charge" : "Carregar saldo",
+        "amount" : "Quantidade a carregar",
+        "amount-placeholder" : "nsira uma quantia",
+        "submit" : "Carregar"
+    },
+    "home" : {
+        "welcome" : "Bem-vindo!",
+        "app" : "aplicativo de estacionamento",
+        "booking" : "reserva",
+        "movements" : "movimentos",
+        "logout" : "sair"
+    },
+    "movements" : {
+        "movements" : "Movimentos",
+        "type" : "Tipo",
+        "amount" : "Quantia",
+        "date" : "Data"
+    },
+    "login" : {
+        "title" : "Conecte-se",
+        "app" : "aplicativo de estacionamento",
+        "cellphone" : "Celular",
+        "cellphone-placeholder" : "Digite um telefone celular",
+        "password" : "Senha",
+        "password-placeholder" : "Insira uma senha",
+        "enter" : "Conecte-se",
+        "register" : "Não registrado?",
+        "register-link" : "Entrar"
+    },
+    "404" : {
+        "title" : "Página não encontrada!",
+        "error" : "ERRO 404",
+        "back" : "Retornar"
+    },
+    "signup" : {
+        "title" : "Entrar",
+        "app" : "aplicativo de estacionamento",
+        "cellphone" : "Celular",
+        "cellphone-placeholder" : "Digite um telefone celular",
+        "password" : "Senha",
+        "password-placeholder" : "Insira uma senha",
+        "email" : "E-mail",
+        "email-placeholder" : "Digite um e-mail",
+        "signup" : "Entrar",
+        "back" : "Retornar"
+    },
+    "park" : {
+        "add-plate" : "adicionar placa",
+        "add-plate-placeholder" : "Digite o número da placa. por exemplo, AAA000 / AA000AA",
+        "start-tooltip" : "Comece a estacionar.",
+        "parking" : "Estacionamento iniciado",
+        "plate" : "placa",
+        "finish" : "terminar"
+    }
 }

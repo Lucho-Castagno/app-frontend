@@ -1,19 +1,19 @@
-<h3>Cuenta corriente</h3>
-<h4>Saldo</h4>
+<h3>{{ 'account.account' | translate }}</h3>
+<h4>{{ 'account.balance' | translate }}</h4>
 <p *ngIf="account">$ {{ account.balance | number:'1.2-2' }}</p>
 <div class="py-3">
     <div class="border-bottom text-center" style="height: 0.9rem"></div>
 </div>
-<h4>Cargar saldo</h4>
+<h4>{{ 'account.charge' | translate }}</h4>
 <form #accountForm="ngForm" (ngSubmit)="chargeBalance(credit.valueAsNumber)">
     <div class="my-4">
-        <label for="credit" class="form-label">Monto a cargar</label>
-        <input type="number" class="form-control bg-light" id="credit" placeholder="Ingrese un monto" ngModel name="credit" #credit>
+        <label for="credit" class="form-label">{{ 'account.amount' | translate }}</label>
+        <input type="number" class="form-control bg-light" id="credit" placeholder="{{ 'account.amount-placeholder' | translate}}" ngModel name="credit" #credit>
     </div>
     <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
     <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'success'" *ngIf="successMessage">{{ successMessage }}</ngb-alert>
     <div class="pt-3">
         <div class="border-bottom text-center" style="height: 0.9rem"></div>
     </div>
-    <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">Cargar</button>
+    <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">{{ 'account.submit' | translate }}</button>
 </form>

@@ -3,28 +3,28 @@
         <app-language-selector></app-language-selector>
     </div>
     <div class="bg-white p-5 rounded-5 text-secondary shadow" style="width: 25rem">
-        <div class="text-center fs-1 fw-bold">Iniciar Sesion</div>
+        <div class="text-center fs-1 fw-bold">{{ 'login.title' | translate }}</div>
         <div class="text-center">
-           <span class="text-center">"app de estacionamiento"</span>
+           <span class="text-center">"{{ 'login.app' | translate }}"</span>
         </div>
         <form #loginForm="ngForm" (ngSubmit)="loginUser(cellphone.value, password.value)">
             <div class="mt-4">
-                <label for="cellphone" class="form-label">Celular</label>
-                <input type="text" class="form-control bg-light" id="cellphone" placeholder="Ingrese un celular" ngModel name="cellphone" #cellphone>
+                <label for="cellphone" class="form-label">{{ 'login.cellphone' | translate }}</label>
+                <input type="text" class="form-control bg-light" id="cellphone" placeholder="{{ 'login.cellphone-placeholder' | translate }}" ngModel name="cellphone" #cellphone>
             </div>
             <div class="mt-3 mb-3">
-                <label for="password" class="form-label">Contraseña</label> 
-                <input type="password" class="form-control bg-light" id="password" placeholder="Ingrese una contraseña" ngModel name="password" #password>
+                <label for="password" class="form-label">{{ 'login.password' | translate }}</label> 
+                <input type="password" class="form-control bg-light" id="password" placeholder="{{ 'login.password-placeholder' | translate }}" ngModel name="password" #password>
             </div>
             <ngb-alert [dismissible]="true" (closed)="closeAlert()" [type]="'danger'" *ngIf="errorMessage">{{ errorMessage }}</ngb-alert>
             <div class="pt-3">
                 <div class="border-bottom text-center" style="height: 0.9rem"></div>
             </div>
-                <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">Ingresar</button>
+                <button type="submit" class="btn btn-info text-white w-100 mt-4 fw-semibold shadow-sm">{{ 'login.enter' | translate }}</button>
         </form>
         <div class="d-flex gap-1 justify-content-center mt-1">
-            <p>No estas registrado?</p>
-            <a [routerLink]="['signup']" class="text-decoration-none text-info fw-semibold">Registrarse</a>
+            <p>{{ 'login.register' | translate }}</p>
+            <a [routerLink]="['signup']" class="text-decoration-none text-info fw-semibold">{{ 'login.register-link' | translate }}</a>
         </div>
     </div>
 </div>

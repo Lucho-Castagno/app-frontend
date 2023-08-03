@@ -1,6 +1,65 @@
 {
-    "spanish": "Español",
-    "english": "Ingles",
-    "portuguese": "Portugues",
-    "italian": "Italiano"
+    "language-selector" : {
+        "spanish" : "Español",
+        "english" : "Ingles",
+        "portuguese" : "Portugues",
+        "italian" : "Italiano"
+    },
+    "account" : {
+        "account" : "Cuenta Corriente",
+        "balance" : "Saldo",
+        "charge" : "Cargar saldo",
+        "amount" : "Monto a cargar",
+        "amount-placeholder" : "Ingrese un monto",
+        "submit" : "Cargar"
+    },
+    "home" : {
+        "welcome" : "¡Bienvenido!",
+        "app" : "app de estacionamiento",
+        "booking" : "reserva",
+        "movements" : "movimientos",
+        "logout" : "salir"
+    },
+    "movements" : {
+        "movements" : "Movimientos",
+        "type" : "Tipo",
+        "amount" : "Monto",
+        "date" : "Fecha"
+    },
+    "login" : {
+        "title" : "Iniciar Sesion",
+        "app" : "app de estacionamiento",
+        "cellphone" : "Celular",
+        "cellphone-placeholder" : "Ingrese un celular",
+        "password" : "Contraseña",
+        "password-placeholder" : "Ingrese una contraseña",
+        "enter" : "Ingresar",
+        "register" : "¿No estas registrado?",
+        "register-link" : "Registrarse"
+    },
+    "404" : {
+        "title" : "¡Pagina no encontrada!",
+        "error" : "ERROR 404",
+        "back" : "Volver"
+    },
+    "signup" : {
+        "title" : "Registrarse",
+        "app" : "app de estacionamiento",
+        "cellphone" : "Celular",
+        "cellphone-placeholder" : "Ingrese un celular",
+        "password" : "Contraseña",
+        "password-placeholder" : "Ingrese una contraseña",
+        "email" : "Email",
+        "email-placeholder" : "Ingrese su email",
+        "signup" : "Registrarse",
+        "back" : "Volver"
+    },
+    "park" : {
+        "add-plate" : "agregar patente",
+        "add-plate-placeholder" : "Ingrese numero de patente. Ej. AAA000 / AA000AA",
+        "start-tooltip" : "Iniciar estacionamiento.",
+        "parking" : "Estacionamiento iniciado",
+        "plate" : "patente",
+        "finish" : "finalizar"
+    }
 }

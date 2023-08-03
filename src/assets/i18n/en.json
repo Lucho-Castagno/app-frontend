@@ -1,6 +1,65 @@
 {
-    "spanish": "Spanish",
-    "english": "English",
-    "portuguese": "Portuguese",
-    "italian": "Italian"
+    "language-selector" : {
+        "spanish" : "Spanish",
+        "english" : "English",
+        "portuguese" : "Portuguese",
+        "italian" : "Italian"
+    },
+    "account" : {
+        "account" : "Checking Account",
+        "balance" : "Balance",
+        "charge" : "Load balance",
+        "amount" : "Amount to load",
+        "amount-placeholder" : "Enter an amount",
+        "submit" : "Load"
+    },
+    "home" : {
+        "welcome" : "Welcome!",
+        "app" : "parking app",
+        "booking" : "booking",
+        "movements" : "movements",
+        "logout" : "log out"
+    },
+    "movements" : {
+        "movements" : "Movements",
+        "type" : "Type",
+        "amount" : "Amount",
+        "date" : "Date"
+    },
+    "login" : {
+        "title" : "Log In",
+        "app" : "parking app",
+        "cellphone" : "Cell phone",
+        "cellphone-placeholder" : "Enter a cell phone",
+        "password" : "Password",
+        "password-placeholder" : "Enter a password",
+        "enter" : "Log in",
+        "register" : "Not registered?",
+        "register-link" : "Sign in"
+    },
+    "404" : {
+        "title" : "Page not found!",
+        "error" : "ERROR 404",
+        "back" : "Return"
+    },
+    "signup" : {
+        "title" : "Sign In",
+        "app" : "parking app",
+        "cellphone" : "Cell phone",
+        "cellphone-placeholder" : "Enter a cell phone",
+        "password" : "Password",
+        "password-placeholder" : "Enter a password",
+        "email" : "Email",
+        "email-placeholder" : "Enter an email",
+        "signup" : "Sign in",
+        "back" : "Return"
+    },
+    "park" : {
+        "add-plate" : "add plate",
+        "add-plate-placeholder" : "Enter plate number. eg AAA000 / AA000AA",
+        "start-tooltip" : "Start parking.",
+        "parking" : "Parking started",
+        "plate" : "plate",
+        "finish" : "finish"
+    }
 }

@@ -6,20 +6,20 @@
                     <app-language-selector></app-language-selector>
                 </div>
                 
-                <h1 class="text-center fw-bold mt-3">¡Bienvenido!</h1>
+                <h1 class="text-center fw-bold mt-3">{{ 'home.welcome' | translate}}</h1>
                 <div class="text-center">
-                   <span class="text-center">"app de estacionamiento"</span>
+                   <span class="text-center">"{{ 'home.app' | translate }}"</span>
                 </div>
                 <div class="container w-100 d-flex justify-content-center">
                     <div class="row mt-4 g-2">
                         <div class="col-auto">
-                            <a [routerLink]="['parking']" class="btn btn-outline-info">reserva</a>
+                            <a [routerLink]="['parking']" class="btn btn-outline-info">{{ 'home.booking' | translate }}</a>
                         </div>
                         <div class="col-auto">
-                            <a [routerLink]="['movements']" class="btn btn-outline-info">movimientos</a>
+                            <a [routerLink]="['movements']" class="btn btn-outline-info">{{ 'home.movements' | translate }}</a>
                         </div>
                         <div class="col-auto">
-                            <button (click)="logOutUser()" class="btn btn-outline-info">salir</button>
+                            <button (click)="logOutUser()" class="btn btn-outline-info">{{ 'home.logout' | translate }}</button>
                         </div>
                     </div>
                 </div>

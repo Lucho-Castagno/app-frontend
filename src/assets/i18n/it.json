@@ -1,6 +1,65 @@
 {
-    "spanish": "Spagnolo",
-    "english": "Inglese",
-    "portuguese": "Portoghese",
-    "italian": "Italiano"
+    "language-selector" : {
+        "spanish" : "Spagnolo",
+        "english" : "Inglese",
+        "portuguese" : "Portoghese",
+        "italian" : "Italiano"
+    },
+    "account" : {
+        "account" : "Conto corrente",
+        "balance" : "Bilancia",
+        "charge" : "Aggiungere equilibrio",
+        "amount" : "Importo da caricare",
+        "amount-placeholder" : "Inserisci un importo",
+        "submit" : "Aggiungere"
+    },
+    "home" : {
+        "welcome" : "Benvenuto!",
+        "app" : "app parcheggio",
+        "booking" : "prenotazione",
+        "movements" : "movimenti",
+        "logout" : "disconnettersi"
+    },
+    "movements" : {
+        "movements" : "Movimenti",
+        "type" : "Tipi",
+        "amount" : "quantità",
+        "date" : "data"
+    },
+    "login" : {
+        "title" : "Login",
+        "app" : "app parcheggio",
+        "cellphone" : "Cellulare",
+        "cellphone-placeholder" : "Inserisci un cellulare",
+        "password" : "Parola d'ordine",
+        "password-placeholder" : "Inserisci una password",
+        "enter" : "Login",
+        "register" : "Non registrato?",
+        "register-link" : "Registrazione"
+    },
+    "404" : {
+        "title" : "Pagina non trovata!",
+        "error" : "ERRORE 404",
+        "back" : "Ritorno"
+    },
+    "signup" : {
+        "title" : "Registrazione",
+        "app" : "app parcheggio",
+        "cellphone" : "Cellulare",
+        "cellphone-placeholder" : "Inserisci un cellulare",
+        "password" : "Parola d'ordine",
+        "password-placeholder" : "Inserisci una password",
+        "email" : "E-mail",
+        "email-placeholder" : "nserisci un'e-mail",
+        "signup" : "Registrazione",
+        "back" : "Ritorno"
+    },
+    "park" : {
+        "add-plate" : "aggiungere la targa",
+        "add-plate-placeholder" : "Inserisci il numero di targa. ad esempio AAA000 / AA000AA",
+        "start-tooltip" : "Inizia a parcheggiare.",
+        "parking" : "Il parcheggio è iniziato",
+        "plate" : "targa",
+        "finish" : "fine"
+    }
 }
