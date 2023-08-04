@@ -56,10 +56,6 @@ export class ParkingComponent {
   }
 
   addPlate(plate: string): void {
-    if(!plate) { 
-      this.errorMessage = "Debe ingresar el numero de patente"; 
-      return;
-    };
     this.plateService.addPlate(plate).subscribe((reponse: HttpResponse<any>) => {
       this.plates.push(reponse.body);
     }, () => {

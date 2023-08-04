@@ -45,10 +45,6 @@ export class AccountComponent implements OnInit {
   }
 
   chargeBalance(credit: number): void {
-    if (!credit) {
-      this.errorMessage = "Ingrese un monto a cargar.";
-      return;
-    }
     this.accountService.chargeBalance(this.account.id, credit).subscribe((response: any) => {
       let newAccount: Account = response as Account;
       this.account.balance = newAccount.balance;
